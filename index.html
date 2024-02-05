@@ -4,26 +4,99 @@
 <link rel="stylesheet" type="text/css" href="index.css">
 
 <body>
+    <div id="header">
+        <span class="highlightChar">Ko</span>rea
+        <span class="highlightChar">B</span>orad acceptance
+        <span class="highlightChar">R</span>ecoil spectrometer and
+        <span class="highlightChar">A</span>pparatus
+    </div>
     <div id="body">
-        <div id="header">Header</div>
-        <div id="border"></div>
-        <div id="download">Download</div>
-        <div class="downloadItemContainer">
-            <div class="downloadLabel" style="--background-color:cornflowerblue"></div>
-            <div class="downloadTitleContainer">
-                <div>
-                    <span class="downloadTitle">Title</span>
-                    <span class="downloadGuide">Guide</span>
-                </div>
-                <div class="downloadInfo">Info</div>
+        <div id="menu"><img id="logo" width="124" height="30" src="images/kobra-logo.svg"></div>
+        <div id="border">
+            <div id="border-mask">
+                <div id="border-title">F1 Target System</div>
+                <div id="border-article">KOBRA (KOrea Broad acceptance Recoil spectrometer and Apparatus), a new
+                    generation recoil spectrometer, has been designed at the Korean heavy-ion accelerator facility, so
+                    called RAON.</div>
+
             </div>
-            <div class="downloadContainer">
-                <div class="downloadButton">Mac</div>
-                <div class="downloadButton">Linux</div>
-                <div class="downloadButton">Windows</div>
+
+        </div>
+        <div id="download-text">Download</div>
+
+        <!-- Download List -->
+        <div class="downloadBodyContainer">
+            <div class="downloadLabel" style="--background-color:#E61673"></div>
+            <div class="downloadItemContainer">
+                <div>
+                    <span class="downloadTitle">EPICS</span>
+                    <span class="downloadVersion">(R3.14.12.5)</span>
+                </div>
+                <div class="downloadInfo">Experimental Physics and Industrial Control System</div>
+                <div class="downloadSubInfo">Version currently in use by the RAON</div>
+
+            </div>
+            <div class="downloadButtonContainer">
+                <a class="downloadButton" href="http://192.168.131.168/download/baseR3.14.12.5.tar.gz">Download</a>
+            </div>
+        </div>
+
+        <div class="downloadBodyContainer">
+            <div class="downloadLabel" style="--background-color:#E61673"></div>
+            <div class="downloadItemContainer">
+                <div>
+                    <span class="downloadTitle">EPICS</span>
+                    <span class="downloadVersion">(R7.0.8)</span>
+                </div>
+                <div class="downloadInfo">Experimental Physics and Industrial Control System</div>
+                <div class="downloadSubInfo">Next upgrade version of EPICS</div>
+
+            </div>
+            <div class="downloadButtonContainer">
+                <a class="downloadButton" href="http://192.168.131.168/download/base-7.0.8.tar.gz">Download</a>
+            </div>
+        </div>
+
+        <div class="downloadBodyContainer">
+            <div class="downloadLabel" style="--background-color:#036EB8"></div>
+            <div class="downloadItemContainer">
+                <div>
+                    <span class="downloadTitle">RAON CS-Studio</span>
+                    <span class="downloadVersion">(4.4.5)</span>
+                </div>
+                <div class="downloadInfo">Control System Studio for the RAON</div>
+                <div class="downloadSubInfo">Version currently in use by the RAON</div>
+
+            </div>
+            <div class="downloadButtonContainer">
+                <a class="downloadButton">Linux</a>
+                <a class="downloadButton">Windows</a>
+            </div>
+        </div>
+
+        <div class="downloadBodyContainer">
+            <div class="downloadLabel" style="--background-color:#036EB8"></div>
+            <div class="downloadItemContainer">
+                <div>
+                    <span class="downloadTitle">CS-Studio Phoebus</span>
+                    <span class="downloadVersion">(4.7.2)</span>
+                    <span class="downloadGuide">Installation Guide
+                        <svg width="20" height="8"><polyline class="downloadArrow" points="1 7 18 7 12.72 1" /></svg>
+                    </span>
+                </div>
+                <div class="downloadInfo">Control System Studio Phoebus</div>
+                <div class="downloadSubInfo">Next upgrade version of CS-Studio</div>
+
+            </div>
+            <div class="downloadButtonContainer">
+                <!-- <a class="downloadButton" >Mac</a> -->
+                <!-- <a class="downloadButton">Linux</a> -->
+                <a class="downloadButton" href="http://192.168.131.168/download/base-7.0.8.tar.gz">Download</a>
             </div>
         </div>
     </div>
+
+    <div id="bottom"></div>
 
 </body>
 
