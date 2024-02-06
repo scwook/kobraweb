@@ -14,8 +14,9 @@
         <div id="menu"><img id="logo" width="124" height="30" src="images/kobra-logo.svg"></div>
         <div id="border">
             <div id="border-image-container">
-                    <div class="border-image" style="background-image: url(images/kobra-bg1.png);"></div>
-                    <div class="border-image" style="background-image: url(images/kobra-bg1.png);"></div>
+                <div class="border-image" style="background-image: url(images/kobra-img1.png);"></div>
+                <div class="border-image" style="background-image: url(images/kobra-img2.png);"></div>
+                <div class="border-image" style="display:none; background-image: url(images/kobra-img3.png);"></div>
             </div>
             <div id="border-mask">
                 <div id="border-title">F1 Target System</div>
@@ -105,6 +106,56 @@
 
 </body>
 
-</html>
+<script>
+    let imageIndex = 0;
+    let x = document.getElementsByClassName("border-image"); 
+    
+    function changeImage(dir) {
+        let n = imageIndex;
+
+        if (!x.length) {
+            return;
+        }
+
+        if (n == x.length) {
+            imageIndex = 0;
+        }
+        if (n < 1) {
+            imageIndex = x.length;
+        }
+
+        console.log(x.length, n);
+
+        for (let i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+
+        if (dir < 0) {
+            x[imageIndex - 1].style.position = "relative";
+            x[imageIndex - 1].style.animation = "animateleft2 1.0s";
+            x[imageIndex - 1].style.display = "flex";
+
+            x[imageIndex].style.position = "relative";
+            x[imageIndex].style.animation = "animateleft1 1.0s";
+            x[imageIndex].style.display = "flex";
+        }
+        else {
+            x[imageIndex - 1].style.position = "relative";
+            x[imageIndex - 1].style.animation = "animateright2 1.0s";
+            x[imageIndex - 1].style.display = "flex";
+            
+            x[imageIndex].style.position = "relative";
+            x[imageIndex].style.animation = "animateright1 1.0s";
+            x[imageIndex].style.display = "flex";
+        }
+
+        imageIndex += dir;
+
+    }
+
+    setInterval(changeImage, 3000, 1);
+
+
+</script>
 
 </html>

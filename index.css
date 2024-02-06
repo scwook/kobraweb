@@ -69,9 +69,9 @@
 
 #border-image-container {
     position: relative;
-    width: 300%;
+    width: 200%;
     height: 600px;
-    animation: animate 4s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+    /* animation: animate 6s cubic-bezier(0.25, 1, 0.5, 1) infinite; */
 }
 
 .border-image {
@@ -251,7 +251,61 @@
         left: 0%;
     }
 
-    20% {
+    40% {
         left: -100%;
+    }
+
+    80% {
+        left: -200%;
+    }
+
+    100% {
+        left: 0%;
+    }
+}
+
+@keyframes animateleft1 {
+    from {
+        left: 0px;
+        /* opacity: 0 */
+    }
+    to {
+        left: -1400px;
+        /* opacity: 1 */
+    }
+}
+
+@keyframes animateleft2 {
+    from {
+        left: -1400px;
+        /* opacity: 0 */
+    }
+    to {
+        left: 0px;
+        /* opacity: 1 */
+    }
+}
+
+@keyframes animateright1 {
+    from {
+        right: 0px;
+        /* opacity: 0 */
+    }
+    to {
+        right: -1400px;
+        /* opacity: 1 */
+    }
+}
+
+
+
+@keyframes animateright2 {
+    from {
+        right: -1400px;
+        /* opacity: 0 */
+    }
+    to {
+        right: 0px;
+        /* opacity: 1 */
     }
 }
