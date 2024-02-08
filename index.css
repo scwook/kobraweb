@@ -75,7 +75,8 @@
 }
 
 .border-image {
-    float: left;
+    position: absolute;
+    /* float: left; */
     width: 1400px;
     height: 600px;
 }
@@ -246,66 +247,24 @@
     }
 }
 
-@keyframes animate {
-    0% {
-        left: 0%;
-    }
-
-    40% {
-        left: -100%;
-    }
-
-    80% {
-        left: -200%;
-    }
-
-    100% {
-        left: 0%;
-    }
-}
-
-@keyframes animateleft1 {
+@keyframes animateLeft1 {
     from {
         left: 0px;
         /* opacity: 0 */
     }
+
     to {
         left: -1400px;
-        /* opacity: 1 */
     }
 }
 
-@keyframes animateleft2 {
+@keyframes animateLeft2 {
     from {
-        left: -1400px;
+        left: 1400px;
         /* opacity: 0 */
     }
+
     to {
         left: 0px;
-        /* opacity: 1 */
-    }
-}
-
-@keyframes animateright1 {
-    from {
-        right: 0px;
-        /* opacity: 0 */
-    }
-    to {
-        right: -1400px;
-        /* opacity: 1 */
-    }
-}
-
-
-
-@keyframes animateright2 {
-    from {
-        right: -1400px;
-        /* opacity: 0 */
-    }
-    to {
-        right: 0px;
-        /* opacity: 1 */
     }
 }

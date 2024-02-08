@@ -2,7 +2,7 @@
 <html>
 <style>
     .test {
-        position: relative;
+        position: absolute;
         float: left;
         /* left: 100px; */
         width: 100px;
@@ -11,32 +11,23 @@
     }
 
     @keyframes animateleft1 {
-        0% {
+        from {
             left: 0px;
             /* opacity: 0 */
         }
 
-        50% {
+        to {
             left: -100px;
-            /* opacity: 1 */
-        }
-
-        100% {
-            left: -100px;
-
         }
     }
 
     @keyframes animateleft2 {
-        0% {
+        from {
             left: 100px;
+            /* opacity: 0 */
         }
 
-        50% {
-            left: 0px;
-        }
-
-        100% {
+        to {
             left: 0px;
         }
     }
@@ -47,97 +38,102 @@
         style="position: relative; left:200px; width:100px; height:100px; border-style: solid; border-width: 2px; border-color: blue; z-index: 100;">
         <div id="subcontainer" style="position: relative; width:300px; height:100px;"></div>
     </div>
+    <button onclick="moveLeft()">Click</button>
+
 </body>
 
 <script>
-
-    const testDiv1 = document.createElement('div');
-    testDiv1.classList.add('test');
-    testDiv1.style.setProperty('--bg-color', "aquamarine");
-
-    const testDiv2 = document.createElement('div');
-    testDiv2.classList.add('test');
-    testDiv2.style.setProperty('--bg-color', "red");
-
-    const testDiv3 = document.createElement('div');
-    testDiv3.classList.add('test');
-    testDiv3.style.setProperty('--bg-color', "green");
-
+    const colorList = ['red', 'blue', 'green'];
     const container = document.getElementById('subcontainer');
-    container.appendChild(testDiv1);
-    container.appendChild(testDiv2);
-    container.appendChild(testDiv3);
 
-
-    // testDiv1.style.display="none";
+    let count = 0;
+    let isAniEnd = 1;
 
     window.onload = function () {
+        let testDiv = document.createElement('div');
+        testDiv.classList.add('test');
+        testDiv.style.setProperty('--bg-color', colorList[0]);
+
+        container.appendChild(testDiv);
+
+        count += 1;
+
         // changeDiv();
-        let first = container.firstChild;
-        console.log(container);
+        // moveDiv(testDiv1, testDiv2);
 
-        container.removeChild(first);
+        // const testDiv1 = document.createElement('div');
+        // testDiv1.classList.add('test');
+        // testDiv1.style.setProperty('--bg-color', "aquamarine");
 
-        setTimeout(function () {
-            container.appendChild(first);
-        }, 1000);
+        // const testDiv2 = document.createElement('div');
+        // testDiv2.classList.add('test');
+        // testDiv2.style.setProperty('--bg-color', "red");
 
+        // const container = document.getElementById('subcontainer');
+        // container.appendChild(testDiv1);
+        // container.appendChild(testDiv2);
+
+        // let first = container.firstChild;
+        // console.log(container);
+
+        // container.removeChild(first);
+
+        // setTimeout(function () {
+        //     container.appendChild(first);
+        // }, 1000);
     }
 
-    function changeDiv() {
-        // testDiv1.style.animation = "animateleft1 2.0s infinite";
-        // testDiv2.style.animation = "animateleft2 2.0s infinite";
-        testDiv1.style.display = "none";
-        // setTimeout(function () {testDiv2 = }, 1500);
-        setTimeout(function () { testDiv1.style.display = "block" }, 1000);
-
-    }
-
-
-    let imageIndex = 0;
-
-    function changeImage(dir) {
-        let n = imageIndex;
-        let x = document.getElementsByClassName("test");
-
-        if (!x.length) {
+    function moveLeft() {
+        let num = colorList.length;
+        if (num == 1) {
             return;
         }
 
-        if (n == x.length) {
-            imageIndex = 0;
-        }
-        if (n < 1) {
-            imageIndex = x.length;
+        if(!isAniEnd) {
+            return;
         }
 
-        console.log(x.length, n);
-
-        for (let i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+        if(count == colorList.length) {
+            count = 0;
         }
 
-        if (dir < 0) {
-            x[imageIndex - 1].style.position = "relative";
-            x[imageIndex - 1].style.animation = "animateleft2 1.0s";
-            x[imageIndex - 1].style.display = "flex";
+        let appendDiv = document.createElement('div');
+        appendDiv.classList.add('test');
+        appendDiv.style.left = "100px";
+        appendDiv.style.setProperty('--bg-color', colorList[count]);
 
-            x[imageIndex].style.position = "relative";
-            x[imageIndex].style.animation = "animateleft1 1.0s";
-            x[imageIndex].style.display = "flex";
-        }
-        else {
-            x[imageIndex - 1].style.position = "relative";
-            x[imageIndex - 1].style.animation = "animateright2 1.0s";
-            x[imageIndex - 1].style.display = "flex";
+        container.appendChild(appendDiv);
+        // container.appendChild(appendDiv.cloneNode(true));
 
-            x[imageIndex].style.position = "relative";
-            x[imageIndex].style.animation = "animateright1 1.0s";
-            x[imageIndex].style.display = "flex";
-        }
+        count += 1;
 
-        imageIndex += dir;
+        moveDiv();
+    }
 
+    // function changeDiv() {
+    //     const firstDiv = container.firstChild
+    //     container.removeChild(firstDiv);
+    //     container.appendChild(firstDiv);
+    // }
+
+    function moveDiv() {
+        id1 = container.childNodes[0];
+        id2 = container.childNodes[1];
+
+        id1.addEventListener("animationend", aniEnd);
+        container.childNodes[0].style.animation = "animateleft1 1.0s forwards";
+        container.childNodes[1].style.animation = "animateleft2 1.0s forwards";
+        isAniEnd = 0;
+
+
+        // setTimeout(function () {
+        //     container.removeChild(container.childNodes[0]);
+        // }, 1500);
+    }
+
+    function aniEnd () {
+        container.removeChild(container.childNodes[0]);
+        isAniEnd = 1;
     }
 </script>
 

@@ -13,16 +13,10 @@
     <div id="body">
         <div id="menu"><img id="logo" width="124" height="30" src="images/kobra-logo.svg"></div>
         <div id="border">
-            <div id="border-image-container">
-                <div class="border-image" style="background-image: url(images/kobra-img1.png);"></div>
-                <div class="border-image" style="background-image: url(images/kobra-img2.png);"></div>
-                <div class="border-image" style="display:none; background-image: url(images/kobra-img3.png);"></div>
-            </div>
+            <div id="border-image-container"></div>
             <div id="border-mask">
-                <div id="border-title">F1 Target System</div>
-                <div id="border-article">KOBRA (KOrea Broad acceptance Recoil spectrometer and Apparatus), a new
-                    generation recoil spectrometer, has been designed at the Korean heavy-ion accelerator facility, so
-                    called RAON.</div>
+                <div id="border-title"></div>
+                <div id="border-article"></div>
             </div>
 
         </div>
@@ -107,54 +101,90 @@
 </body>
 
 <script>
-    let imageIndex = 0;
-    let x = document.getElementsByClassName("border-image"); 
-    
-    function changeImage(dir) {
-        let n = imageIndex;
+    const imageList = [
+        'kobra-img1.png',
+        'kobra-img2.png',
+        'kobra-img3.png'
+    ];
 
-        if (!x.length) {
+    const imageTitleList = [
+        'F1 Target System',
+        'F2 Target System',
+        'F3 Target System',
+    ];
+    const imageArticleList = [
+        'KOBRA (KOrea Broad acceptance Recoil spectrometer and Apparatus), a new generation recoil spectrometer, has been designed at the Korean heavy-ion accelerator facility, so called RAON.',
+        'KOBRA (KOrea Broad acceptance Recoil spectrometer and Apparatus)',
+        'The Korean heavy-ion accelerator facility, so called RAON.'
+    ];
+
+    const imageContainer = document.getElementById('border-image-container');
+
+    let count = 0;
+    let isMoveEnd = 1;
+
+    window.onload = function () {
+        const currentImageDiv = document.createElement('div');
+        currentImageDiv.classList.add('border-image');
+        currentImageDiv.style.backgroundImage = 'url(images/' + imageList[count] + ')';
+
+        imageContainer.appendChild(currentImageDiv);
+
+        count += 1;
+
+        document.getElementById('border-title').innerText = imageTitleList[count-1];
+        document.getElementById('border-article').innerText = imageArticleList[count-1];
+
+
+        setInterval(imageSlidToLeft, 3000);
+    }
+
+    function imageSlidToLeft() {
+        if (imageList.length == 1) {
             return;
         }
 
-        if (n == x.length) {
-            imageIndex = 0;
-        }
-        if (n < 1) {
-            imageIndex = x.length;
+        if (!isMoveEnd) {
+            return;
         }
 
-        console.log(x.length, n);
-
-        for (let i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+        if (count == imageList.length) {
+            count = 0;
         }
 
-        if (dir < 0) {
-            x[imageIndex - 1].style.position = "relative";
-            x[imageIndex - 1].style.animation = "animateleft2 1.0s";
-            x[imageIndex - 1].style.display = "flex";
+        const nextImageDiv = document.createElement('div');
+        nextImageDiv.classList.add('border-image');
+        nextImageDiv.style.backgroundImage = 'url(images/' + imageList[count] + ')';
 
-            x[imageIndex].style.position = "relative";
-            x[imageIndex].style.animation = "animateleft1 1.0s";
-            x[imageIndex].style.display = "flex";
-        }
-        else {
-            x[imageIndex - 1].style.position = "relative";
-            x[imageIndex - 1].style.animation = "animateright2 1.0s";
-            x[imageIndex - 1].style.display = "flex";
-            
-            x[imageIndex].style.position = "relative";
-            x[imageIndex].style.animation = "animateright1 1.0s";
-            x[imageIndex].style.display = "flex";
-        }
+        imageContainer.appendChild(nextImageDiv);
+        count += 1;
 
-        imageIndex += dir;
-
+        startMove();
     }
 
-    setInterval(changeImage, 3000, 1);
+    function startMove() {
+        currentImageID = imageContainer.childNodes[0];
+        nextImageID = imageContainer.childNodes[1];
 
+        currentImageID.addEventListener("animationend", currentImageAniEnd);
+        nextImageID.addEventListener("animationend", nextImageAniEnd);
+
+
+        currentImageID.style.animation = "animateLeft1 1.0s forwards";
+        nextImageID.style.animation = "animateLeft2 1.0s forwards";
+
+        isMoveEnd = 0;
+    }
+
+    function currentImageAniEnd() {
+        imageContainer.removeChild(imageContainer.childNodes[0]);
+        isMoveEnd = 1;
+    }
+
+    function nextImageAniEnd() {
+        document.getElementById('border-title').innerText = imageTitleList[count-1];
+        document.getElementById('border-article').innerText = imageArticleList[count-1];
+    }
 
 </script>
 
