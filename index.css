@@ -40,6 +40,11 @@
     background-color: #C42917;
 }
 
+.margin-div {
+    width: 100%;
+    height: 90px;
+}
+
 .highlightChar {
     font-family: "Titillium-Bold";
 }
@@ -103,6 +108,54 @@
     color: white;
     font-size: 20px;
     font-family: "Titillium-Light";
+}
+
+#content1-container {
+    float: left;
+    width: 899px;
+    height: 700px;
+}
+
+#content1-title {
+    font-size: 48px;
+    font-family: "Titillium-Light";
+}
+
+#content1-article {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 30px;
+    font-family: "Titillium-Light";
+}
+
+.content1-image{
+    float: left;
+    width: 400px;
+    height: 300px;
+    margin: 20px;
+}
+
+#content-split {
+    float: left;
+    width: 2px;
+    height: 700px;
+    background-color: lightgray;
+}
+
+#content2-container {
+    float: left;
+    width: 499px;
+    height: 700px;
+}
+
+#content2-title {
+    font-size: 48px;
+    font-family: "Titillium-Light";
+}
+
+.content2-subcontainer {
+    width: 100%;
+    height: 100px;
 }
 
 #download-text {
